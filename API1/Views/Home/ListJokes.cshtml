@@ -1,0 +1,15 @@
+﻿@model JokeList
+@{
+    ViewData["Title"] = "ListJokes";
+}
+
+<h1>ListJokes</h1>
+Number of Jokes Found: @Model.Value.Length
+
+<ul>
+    @foreach(JokeContent j in Model.Value)
+    {
+        <li>@j.Joke</li>
+    }
+</ul>
+

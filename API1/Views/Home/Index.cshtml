@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Joke
+
+<h1 class="display-4">Welcome</h1>
+@Model.Value.Joke
+<br />
+<!--this stops the ul from being inserted if it's blank-->
+@if (Model.Value.Categories.Length > 0)
+{
+    <ul>
+        @foreach (string cat in Model.Value.Categories)
+        {
+            <li>@cat</li>
+        }
+    </ul>
+}
+    ***
