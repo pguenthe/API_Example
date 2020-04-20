@@ -61,6 +61,29 @@ namespace API1.Controllers
             return View(jokes);
         }
 
+        public async Task<IActionResult> Weather ()
+        {
+            //1. Make the HttpClient
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://forecast.weather.gov");
+
+            //identify myself as a Firefox-compatible browser to make the API happy
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (compatible; GrandCircus/1.0)");
+
+            //2. Make the API call and put the result in a variable
+            var response = await client.GetAsync("MapClick.php?lat=42.33578&lon=-83.0479732&FcstType=json");
+
+            //3. Parse the response contents as your typed object
+            //in this case, it contains an array of JokeContent objects inside the Value
+            var weather = await response.Content.ReadAsAsync<Weather>();
+
+            //give me the content for debugging purposes
+            //ViewData["ResponseCode"] = response.StatusCode;
+            //ViewData["APIresponse"] = await response.Content.ReadAsStringAsync();
+
+            return View(weather);
+        }
+
 
         public IActionResult Privacy()
         {

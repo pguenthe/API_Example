@@ -1,0 +1,19 @@
+﻿@model Weather
+
+@{
+    ViewData["Title"] = "Weather";
+    int numItems = Model.Time.StartPeriodName.Length;
+}
+ 
+<h1>Weather Forecast for Detroit, MI</h1>
+<ul>
+    @for(int i = 0; i < numItems; i++)
+    {
+        <li>
+            <strong>@Model.Time.StartPeriodName[i]:</strong>
+            @Model.Data.Temperature[i] @Model.Data.Text[i]<br />
+            <img src="@Model.Data.Iconlink[i]" />
+        </li>
+    }
+</ul>
+
